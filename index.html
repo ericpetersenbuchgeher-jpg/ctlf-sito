@@ -1382,6 +1382,28 @@ if (renderer) {
   const fogColor = new THREE.Color();
   let time = 0;
 
+  /* Ancora la gemma sopra il logo dell'hero: legge la posizione REALE del
+     logo (DOM) e la converte in coordinate 3D, così tra la punta della gemma
+     e il monogramma resta sempre lo stesso margine, su qualsiasi schermo. */
+  const heroLogoEl = document.querySelector('.hero__logo');
+  const _v = new THREE.Vector3();
+  function gemAboveLogo(scale){
+    if (!heroLogoEl) return null;
+    const r = heroLogoEl.getBoundingClientRect();
+    if (r.width < 2 || r.top > innerHeight || r.bottom < 0) return null;
+    const visH = 2 * Math.tan((camera.fov * Math.PI / 180) / 2) * camera.position.z;
+    const pxPerWorld = innerHeight / visH;
+    const lowerPx = 1.55 * scale * pxPerWorld; // punta del padiglione
+    const gap = 20;                            // respiro fisso in px sopra il logo
+    const screenX = r.left + r.width / 2;
+    const screenY = r.top - gap - lowerPx;     // schermo → centro gemma
+    _v.set((screenX / innerWidth) * 2 - 1, -(screenY / innerHeight) * 2 + 1, 0.5);
+    _v.unproject(camera);
+    _v.sub(camera.position).normalize();
+    const dist = -camera.position.z / _v.z;
+    return { x: camera.position.x + _v.x * dist, y: camera.position.y + _v.y * dist };
+  }
+
   window.CTLF.tick3d = function(dtms){
     const dt = Math.min(dtms, 64) / 1000;
     time += dt;
@@ -1392,10 +1414,33 @@ if (renderer) {
     fogColor.setRGB(c[0], c[1], c[2]);
     scene.fog.color.copy(fogColor);
 
-    /* gemma — smoothing indipendente dal frame-rate */
+    /* quanto siamo "nell'hero": 1 all'avvio, 0 dopo aver scrollato un po' */
+    const heroLock = Math.max(0, Math.min(1, 1 - p / 0.06));
+
+    /* camera: parallasse solo fuori dall'hero; nell'hero resta ferma e centrata
+       (indispensabile per ancorare la gemma al logo senza feedback) */
+    if (!reduced) {
+      const am = 1 - Math.exp(-5 * dt);
+      mouse.x += (mouse.tx - mouse.x) * am;
+      mouse.y += (mouse.ty - mouse.y) * am;
+    }
+    camera.position.x = mouse.x * 0.42 * (1 - heroLock);
+    camera.position.y = -mouse.y * 0.3 * (1 - heroLock);
+    camera.lookAt(gem.position.x * 0.6 * (1 - heroLock), gem.position.y * 0.5 * (1 - heroLock), 0);
+    camera.updateMatrixWorld();
+
+    /* posizione target: nell'hero ancorata al logo, poi ai keyframe di scroll */
+    let k = gemAt(p);
+    if (heroLock > 0) {
+      const dom = gemAboveLogo(k.s);
+      if (dom) k = { x: dom.x * heroLock + k.x * (1 - heroLock),
+                     y: dom.y * heroLock + k.y * (1 - heroLock),
+                     s: k.s };
+    }
+
+    /* smoothing indipendente dal frame-rate; bob solo fuori dall'hero */
     const ag = 1 - Math.exp(-6 * dt);
-    const k = gemAt(p);
-    const bob = reduced ? 0 : Math.sin(time * 0.8) * 0.08;
+    const bob = (reduced ? 0 : Math.sin(time * 0.8) * 0.08) * (1 - heroLock);
     gem.position.x += (k.x - gem.position.x) * ag;
     gem.position.y += (k.y + bob - gem.position.y) * ag;
     gem.scale.x += (k.s - gem.scale.x) * ag;
@@ -1404,10 +1449,10 @@ if (renderer) {
     if (reduced) {
       /* solo movimento legato allo scroll: niente moto autonomo */
       gem.rotation.y = p * Math.PI * 2.6;
-      gem.rotation.x = p * 0.35;
+      gem.rotation.x = p * 0.35 * (1 - heroLock);
     } else {
       gem.rotation.y = time * 0.35 + p * Math.PI * 2.6;
-      gem.rotation.x = Math.sin(time * 0.22) * 0.09 + p * 0.35;
+      gem.rotation.x = (Math.sin(time * 0.22) * 0.09 + p * 0.35) * (1 - heroLock); // nell'hero resta dritta
       ring.rotation.z = time * 0.14;
       dust.rotation.y = time * 0.016;
       dust.position.y = Math.sin(time * 0.12) * 0.15;
@@ -1422,16 +1467,6 @@ if (renderer) {
     goldMat.envMapIntensity = 1.15 - p * 0.72;
     pMat.opacity    = 0.22 + p * 0.55;
     pMat.size       = 0.09 + p * 0.10;
-
-    /* camera: respiro + parallasse */
-    if (!reduced) {
-      const am = 1 - Math.exp(-5 * dt);
-      mouse.x += (mouse.tx - mouse.x) * am;
-      mouse.y += (mouse.ty - mouse.y) * am;
-      camera.position.x = mouse.x * 0.42;
-      camera.position.y = -mouse.y * 0.3;
-    }
-    camera.lookAt(gem.position.x * 0.6, gem.position.y * 0.5, 0);
 
     renderer.render(scene, camera);
   };
