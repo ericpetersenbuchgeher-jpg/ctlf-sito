@@ -31,7 +31,7 @@
     "opens": "07:00",
     "closes": "23:00"
   }],
-  "sameAs": ["https://instagram.com/ctlf_milano"]
+  "sameAs": ["https://instagram.com/ctlfmilano"]
 }
 </script>
 <style>
@@ -427,6 +427,16 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
   font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;line-height:2;color:rgba(237,217,180,.66);
 }
 .eventi__cta{text-align:center;margin-top:clamp(2.4rem,5vh,3.4rem)}
+/* fascia "formula F&B": stessa carta scura degli eventi, a tutta larghezza e centrata */
+.formula{
+  max-width:52rem;margin:clamp(1.6rem,4vh,2.4rem) auto 0;
+  background:linear-gradient(170deg,rgba(38,19,10,.92),rgba(22,11,4,.94));
+  border:1px solid rgba(216,169,84,.28);border-radius:3px;
+  padding:clamp(2.2rem,4.5vw,3.4rem) clamp(1.6rem,4vw,3.4rem);color:#EDD9B4;
+  display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;
+}
+.formula h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.6rem,2.8vw,2.3rem);line-height:1.2;color:#F3E3C2}
+.formula p{max-width:36em;font-size:1.02rem;line-height:1.65;color:rgba(237,217,180,.78)}
 
 /* ---- CONVENZIONI ---- */
 .convenzioni{
@@ -450,6 +460,25 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
 }
 .chip:hover{border-color:var(--gold);color:var(--ink)}
 .convenzioni__cta{margin-top:clamp(2.2rem,5vh,3rem)}
+
+/* ---- STUDENTI ---- */
+.studenti{
+  padding-top:clamp(5rem,10vh,8rem);padding-bottom:clamp(6rem,12vh,9rem);
+  text-align:center;display:flex;flex-direction:column;align-items:center;
+}
+.studenti .eyebrow::before{display:none}
+.studenti h2{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(2rem,4.6vw,3.8rem);line-height:1.18;max-width:18em;margin-top:1.1rem;
+}
+.studenti__lede{margin-top:1.2rem;max-width:36em;font-size:1.08rem;line-height:1.7;color:var(--ink-soft)}
+.studenti__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,2rem);
+  width:100%;max-width:62rem;margin:clamp(2.8rem,6vh,4.2rem) auto 0;text-align:left;
+}
+/* .tier estende .evento: stessa carta scura, titolo più grande perché qui parla il numero */
+.tier h3{font-size:clamp(1.9rem,3.2vw,2.6rem)}
+.studenti__cta{margin-top:clamp(2.2rem,5vh,3rem)}
 
 /* ---- VALORI MARQUEE ---- */
 .valori{
@@ -593,6 +622,7 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
   .moment__n{display:none}
   .anime__grid{grid-template-columns:1fr}
   .eventi__grid{grid-template-columns:1fr;max-width:34rem}
+  .studenti__grid{grid-template-columns:1fr;max-width:34rem}
   .prenota__wrap{grid-template-columns:1fr}
   .bookform__grid{grid-template-columns:1fr}
   .scrollhint{display:none}
@@ -633,6 +663,7 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
     <a class="nav__link" href="#menu">Menù</a>
     <a class="nav__link" href="#eventi">Eventi</a>
     <a class="nav__link" href="#convenzioni">Convenzioni</a>
+    <a class="nav__link" href="#studenti">Studenti</a>
     <a class="nav__book" href="#prenota">Prenota</a>
   </nav>
 </header>
@@ -819,24 +850,24 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
     </div>
   </section>
 
-  <!-- EVENTI & CORPORATE -->
+  <!-- SPAZIO POLIFUNZIONALE · EVENTI & CORPORATE -->
   <section class="section eventi" id="eventi">
     <div class="eventi__head">
-      <p class="eyebrow" data-reveal>Eventi &amp; corporate</p>
+      <p class="eyebrow" data-reveal>Spazio polifunzionale · Eventi &amp; corporate</p>
       <h2 data-reveal>Il locale, tutto per voi.</h2>
       <p class="eventi__sub" data-reveal>
-        Due anime anche qui: sale riunioni di giorno, feste private di sera.
-        Nel weekend CTLF apre solo per voi.
+        Una sala che cambia mestiere: meeting e piccole convention di giorno,
+        aperitivi aziendali e feste private di sera. Nel weekend CTLF apre solo per voi.
       </p>
     </div>
     <div class="eventi__grid">
       <article class="evento" data-reveal>
         <span class="monogram" aria-hidden="true"></span>
         <span class="evento__tag">Corporate — Giorno</span>
-        <h3>Meeting &amp; conferenze</h3>
-        <p>Colazioni di lavoro, presentazioni e workshop con coffee break curato.
-           Wi-Fi, riservatezza e un espresso che tiene sveglia la riunione.</p>
-        <p class="evento__feat">Fino a 40 posti · Wi-Fi · Coffee break</p>
+        <h3>Meeting &amp; piccole convention</h3>
+        <p>Riunioni, presentazioni, workshop e convention fino a 40 persone.
+           Wi-Fi, schermo per le slide e un espresso che tiene sveglia la sala.</p>
+        <p class="evento__feat">Fino a 40 posti · Wi-Fi · Schermo</p>
       </article>
       <article class="evento" data-reveal>
         <span class="monogram" aria-hidden="true"></span>
@@ -855,9 +886,16 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
         <p class="evento__feat">Locale in esclusiva · Menu personalizzato</p>
       </article>
     </div>
+    <div class="formula" data-reveal>
+      <span class="evento__tag">Formula F&amp;B inclusa</span>
+      <h3>Prenotate la sala, al resto pensiamo noi.</h3>
+      <p>Chi prenota lo spazio per un meeting o una convention ha il food &amp; beverage compreso:
+         coffee break, light lunch o aperitivo, a scelta. Ci dite data, orario e quante persone:
+         il preventivo arriva su WhatsApp entro 24 ore.</p>
+    </div>
     <div class="eventi__cta" data-reveal>
-      <a class="btn-ghost" href="https://wa.me/393425467527?text=Ciao%20CTLF!%20Vorrei%20una%20proposta%20per%20un%20evento." target="_blank" rel="noopener">
-        Richiedi una proposta
+      <a class="btn-ghost" href="https://wa.me/393425467527?text=Ciao%20CTLF!%20Vorrei%20un%20preventivo%20per%20lo%20spazio%20polifunzionale%20(meeting%2C%20convention%20o%20evento%20privato)." target="_blank" rel="noopener">
+        Richiedi un preventivo
       </a>
     </div>
   </section>
@@ -881,6 +919,30 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
       <a class="btn-ghost" href="https://wa.me/393425467527?text=Ciao%20CTLF!%20Vorrei%20informazioni%20sulle%20convenzioni%20aziendali." target="_blank" rel="noopener">
         Attiva una convenzione
       </a>
+    </div>
+  </section>
+
+  <!-- STUDENTI · TERZO APPELLO -->
+  <section class="section studenti" id="studenti">
+    <p class="eyebrow" data-reveal>Studenti</p>
+    <h2 data-reveal>Terzo Appello. Ogni mercoledì.</h2>
+    <p class="studenti__lede" data-reveal>Dal 7 ottobre il mercoledì sera è degli studenti: musica, aperitivo lungo e, la prima sera, il drink di benvenuto lo offriamo noi. La convenzione invece vale tutti i giorni.</p>
+    <div class="studenti__grid">
+      <article class="evento tier" data-reveal>
+        <span class="monogram" aria-hidden="true"></span>
+        <span class="evento__tag">Badge universitario</span>
+        <h3>10% alla cassa</h3>
+        <p>Studenti regolarmente immatricolati: mostrate il badge dell’università al momento di pagare e lo sconto parte su colazione, lunch e aperitivo.</p>
+      </article>
+      <article class="evento tier" data-reveal>
+        <span class="monogram" aria-hidden="true"></span>
+        <span class="evento__tag">Libretto CTLF</span>
+        <h3>Due firme, 30%</h3>
+        <p>La tessera del network InDuomo Education funziona come un libretto: ogni serata a cui partecipate vale una firma. Dalla seconda firma lo sconto sale al 30%.</p>
+      </article>
+    </div>
+    <div class="studenti__cta" data-reveal>
+      <a class="btn-ghost" href="https://wa.me/393425467527?text=Ciao%20CTLF!%20Vorrei%20informazioni%20su%20Terzo%20Appello%20e%20sulla%20convenzione%20studenti." target="_blank" rel="noopener">Scrivici APPELLO</a>
     </div>
   </section>
 
@@ -978,8 +1040,8 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
     </div>
     <h2 class="finale__payoff" data-reveal><span lang="en">Two Moods. One Place.</span></h2>
     <p class="finale__places" data-reveal><span lang="en">Every city has places. Few become destinations.</span></p>
-    <a class="finale__cta" href="https://instagram.com/ctlf_milano" target="_blank" rel="noopener" data-reveal>
-      Seguici — @ctlf_milano
+    <a class="finale__cta" href="https://instagram.com/ctlfmilano" target="_blank" rel="noopener" data-reveal>
+      Seguici — @ctlfmilano
     </a>
     <div class="finale__hours" data-reveal>
       <div>Colazione<b>07:00 — 11:30</b></div>
