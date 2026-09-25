@@ -402,12 +402,16 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
 .eventi__sub{margin-top:.9rem;font-style:italic;color:var(--ink-soft);font-size:1.05rem;max-width:38em}
 .gallery{max-width:1180px;margin:clamp(2.8rem,6vh,4.2rem) auto 0}
 .eventi__grid{
-  display:flex;gap:clamp(1rem,2vw,1.6rem);
+  display:flex;gap:1.2rem;
   overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
   padding:12px 2px 18px;scrollbar-width:none;
 }
 .eventi__grid::-webkit-scrollbar{display:none}
-.eventi__grid > *{flex:0 0 clamp(16.5rem,30%,22rem);scroll-snap-align:start}
+.eventi__grid > *{flex:0 0 max(15.5rem,calc((100% - 3.6rem) / 4));scroll-snap-align:start}
+.eventi__grid .evento{padding:clamp(1.4rem,2vw,1.9rem);gap:.9rem}
+.eventi__grid .evento h3{font-size:clamp(1.3rem,1.7vw,1.6rem)}
+.eventi__grid .evento p{font-size:.93rem;line-height:1.55}
+.gallery__nav[hidden]{display:none}
 .gallery__nav{display:flex;justify-content:center;gap:.8rem;margin-top:.6rem}
 .gallery__btn{
   width:46px;height:46px;border-radius:50%;cursor:pointer;
@@ -1158,6 +1162,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const sync = () => {
     const max = g.scrollWidth - g.clientWidth - 4;
     btns.forEach(b => { b.disabled = b.dataset.dir === '-1' ? g.scrollLeft <= 4 : g.scrollLeft >= max; });
+    if (btns[0]) btns[0].parentElement.hidden = max <= 0;
   };
   btns.forEach(b => b.addEventListener('click', () => g.scrollBy({ left: step() * +b.dataset.dir, behavior: 'smooth' })));
   g.addEventListener('scroll', sync, { passive: true });
