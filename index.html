@@ -1306,6 +1306,7 @@ if (renderer) {
     { p: 0.86, x:  0.00, y:  1.60, s: 0.22 },
     { p: 1.00, x:  0.00, y: -2.20, s: 0.14 }
   ];
+  const GEM_SIZE = 0.88; // gemma un filo più piccola (25/09)
   function gemAt(p){
     const KEYS = isMobile ? KEYS_MOBILE : KEYS_DESKTOP;
     let i = 0;
@@ -1317,7 +1318,7 @@ if (renderer) {
     return {
       x: a.x + (b.x - a.x) * t,
       y: a.y + (b.y - a.y) * t,
-      s: a.s + (b.s - a.s) * t
+      s: (a.s + (b.s - a.s) * t) * GEM_SIZE
     };
   }
 
