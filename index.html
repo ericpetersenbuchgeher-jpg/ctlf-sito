@@ -404,10 +404,22 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
   font-size:clamp(2.3rem,5.4vw,4.4rem);margin-top:1.1rem;
 }
 .eventi__sub{margin-top:.9rem;font-style:italic;color:var(--ink-soft);font-size:1.05rem;max-width:38em}
+.gallery{max-width:1180px;margin:clamp(2.8rem,6vh,4.2rem) auto 0}
 .eventi__grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2vw,1.6rem);
-  max-width:1280px;margin:clamp(2.8rem,6vh,4.2rem) auto 0;
+  display:flex;gap:clamp(1rem,2vw,1.6rem);
+  overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+  padding:12px 2px 18px;scrollbar-width:none;
 }
+.eventi__grid::-webkit-scrollbar{display:none}
+.eventi__grid > *{flex:0 0 clamp(16.5rem,30%,22rem);scroll-snap-align:start}
+.gallery__nav{display:flex;justify-content:center;gap:.8rem;margin-top:.6rem}
+.gallery__btn{
+  width:46px;height:46px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line);background:none;color:var(--ink);font-size:1.05rem;
+  transition:background .4s,border-color .4s,color .4s,opacity .4s;
+}
+.gallery__btn:hover{background:var(--gold);border-color:var(--gold);color:#241206}
+.gallery__btn:disabled{opacity:.3;cursor:default;background:none;color:var(--ink);border-color:var(--line)}
 .evento{
   background:linear-gradient(170deg,rgba(38,19,10,.92),rgba(22,11,4,.94));
   border:1px solid rgba(216,169,84,.28);border-radius:3px;
@@ -420,7 +432,6 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
 .evento--link{text-decoration:none;cursor:pointer}
 .evento--link .evento__feat{color:var(--gold)}
 .evento--link:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
-@media (max-width:1500px){.eventi__grid{grid-template-columns:repeat(2,1fr);max-width:960px}}
 .evento__tag{font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
 .evento h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.45rem,2.2vw,1.85rem);line-height:1.2;color:#F3E3C2}
 .evento p{font-size:.98rem;line-height:1.6;color:rgba(237,217,180,.78)}
@@ -617,7 +628,7 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
   .moment__copy{grid-column:2}
   .moment__n{display:none}
   .anime__grid{grid-template-columns:1fr}
-  .eventi__grid{grid-template-columns:1fr;max-width:34rem}
+  .eventi__grid > *{flex-basis:82%}
   .studenti__grid{grid-template-columns:1fr;max-width:34rem}
   .prenota__wrap{grid-template-columns:1fr}
   .bookform__grid{grid-template-columns:1fr}
@@ -774,39 +785,41 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
         aperitivi aziendali e feste private di sera. Il sabato CTLF apre solo per voi, la domenica su richiesta.
       </p>
     </div>
-    <div class="eventi__grid">
-      <article class="evento" data-reveal>
+    <div class="gallery">
+    <div class="eventi__grid" id="eventiGallery" tabindex="0" aria-label="Eventi e spazio, scorri per vederli tutti">
+      <article class="evento">
         <span class="monogram" aria-hidden="true"></span>
-        <span class="evento__tag">Corporate · Giorno</span>
         <h3>Meeting &amp; piccole convention</h3>
         <p>Riunioni, presentazioni, workshop e convention fino a 40 persone.
            wifi, schermo per le slide e un espresso che tiene sveglia la sala.</p>
         <p class="evento__feat">Fino a 40 posti · wifi · Schermo</p>
       </article>
-      <article class="evento" data-reveal>
+      <article class="evento">
         <span class="monogram" aria-hidden="true"></span>
-        <span class="evento__tag">Corporate · Sera</span>
         <h3>Aperitivi aziendali</h3>
         <p>Team building, brindisi di fine progetto, lanci prodotto.
            Taglieri generosi, cocktail classici e la squadra che si rilassa davvero.</p>
         <p class="evento__feat">Formule a persona · Open bar su misura</p>
       </article>
-      <a class="evento evento--link" href="eventi.html" data-reveal>
+      <a class="evento evento--link" href="eventi.html">
         <span class="monogram" aria-hidden="true"></span>
-        <span class="evento__tag">Ogni mercoledì · Studenti</span>
         <h3>I nostri eventi</h3>
         <p>Terzo Appello: dieci mercoledì dal 7 ottobre al 16 dicembre, con musica, aperitivo lungo
            e la partita sul ledwall quando c’è la coppa. Date e sconti studenti nella pagina dedicata.</p>
         <p class="evento__feat">Scopri le date <span aria-hidden="true">→</span></p>
       </a>
-      <article class="evento" data-reveal>
+      <article class="evento">
         <span class="monogram" aria-hidden="true"></span>
-        <span class="evento__tag">Privati · Sabato</span>
         <h3>Eventi privati</h3>
         <p>Compleanni, lauree, feste che meritano un indirizzo.
            Menu creati ad hoc per ogni vostra esigenza.</p>
         <p class="evento__feat">Locale in esclusiva · Menu personalizzato</p>
       </article>
+    </div>
+    <div class="gallery__nav">
+      <button class="gallery__btn" type="button" data-dir="-1" aria-label="Precedente" aria-controls="eventiGallery">←</button>
+      <button class="gallery__btn" type="button" data-dir="1" aria-label="Successivo" aria-controls="eventiGallery">→</button>
+    </div>
     </div>
     <div class="formula" data-reveal>
       <span class="evento__tag">Sconto aziende sul beverage</span>
@@ -1139,6 +1152,22 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     else target.scrollIntoView({ behavior: (CTLF.reduced || !rafVivo) ? 'auto' : 'smooth' });
   });
 });
+
+/* ---------- Galleria eventi: frecce e stato ---------- */
+(function(){
+  const g = document.getElementById('eventiGallery');
+  if (!g) return;
+  const btns = document.querySelectorAll('.gallery__btn');
+  const step = () => (g.firstElementChild ? g.firstElementChild.getBoundingClientRect().width : 300) + 20;
+  const sync = () => {
+    const max = g.scrollWidth - g.clientWidth - 4;
+    btns.forEach(b => { b.disabled = b.dataset.dir === '-1' ? g.scrollLeft <= 4 : g.scrollLeft >= max; });
+  };
+  btns.forEach(b => b.addEventListener('click', () => g.scrollBy({ left: step() * +b.dataset.dir, behavior: 'smooth' })));
+  g.addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync);
+  sync();
+})();
 
 /* ---------- Tab del menù ---------- */
 const menuTabs = Array.from(document.querySelectorAll('.menu__tab'));
