@@ -473,6 +473,11 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
 }
 .chip:hover{border-color:var(--gold);color:var(--ink)}
 .convenzioni__cta{margin-top:clamp(2.2rem,5vh,3rem)}
+/* le quattro chip su una riga sola quando c'è spazio */
+@media (min-width:1100px){
+  .convenzioni__chips{flex-wrap:nowrap;max-width:none}
+  .convenzioni__chips .chip{white-space:nowrap;letter-spacing:.18em;padding:.65em 1.2em}
+}
 
 /* ---- STUDENTI ---- */
 .studenti{
