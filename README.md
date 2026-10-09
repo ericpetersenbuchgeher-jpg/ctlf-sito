@@ -28,6 +28,7 @@ python3 -m http.server 4173
 | Vision & Due anime | Il racconto del brand — da Bruce Wayne a Batman |
 | Eventi & Corporate | Meeting, aperitivi aziendali, eventi privati nel weekend |
 | Convenzioni | Formule per le aziende della zona CityLife |
+| Instagram | Gli ultimi post di @ctlfmilano a scorrimento, il più recente per primo |
 | Prenota | Form che prepara un messaggio WhatsApp precompilato |
 
 ## File
@@ -35,6 +36,11 @@ python3 -m http.server 4173
 - `index.html` — il sito (sorgente unico: HTML + CSS + JS)
 - `assets/` — logo oro, maschera del monogramma, favicon (estratti dal brand book)
 - `CTLF-sito-standalone.html` — versione monofile da condividere
+- `scripts/instagram_sync.py` + `.github/workflows/instagram.yml` — ogni 3 ore
+  scaricano gli ultimi post di Instagram in `assets/instagram/` e riscrivono le card
+  in `index.html` (fra `IG:START` e `IG:END`). Per l'aggiornamento affidabile serve il
+  secret `IG_TOKEN` del repo: token long-lived dell'API Instagram (login Instagram)
+  dell'account ctlfmilano. Lancio manuale: tab Actions → Instagram feed → Run workflow.
 
 ## Dati reali
 
