@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>I nostri eventi · CTLF Milano</title>
-<meta name="description" content="Mercoledì Universitario con Astra, il mercoledì degli studenti da CTLF in Via Masaccio 18, Milano: nove serate dal 14 ottobre al 16 dicembre, sconto col badge universitario e Libretto CTLF.">
+<meta name="description" content="Venerdì jazz dal vivo con le serate JazzMI e Milano Music Week, e Mercoledì Universitario con Astra, il mercoledì degli studenti da CTLF in Via Masaccio 18, Milano: nove serate dal 14 ottobre al 16 dicembre, sconto col badge universitario e Libretto CTLF.">
 <link rel="icon" type="image/png" href="assets/logo-fav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,6 +77,20 @@ h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3.6vw,
 .date__tag{margin-top:auto;padding-top:.5rem;font-size:.9rem;font-style:italic;color:var(--gold)}
 .date--key{border-color:rgba(216,169,84,.65)}
 
+/* venerdì jazz: una riga per serata, data a sinistra */
+.gigs{list-style:none;display:flex;flex-direction:column;gap:clamp(.7rem,1.5vw,1rem);margin-top:clamp(2rem,5vh,3rem)}
+.gig{
+  display:grid;grid-template-columns:7.5rem 1fr;gap:clamp(1rem,3vw,2.2rem);align-items:center;
+  border:1px solid rgba(216,169,84,.28);border-radius:3px;padding:1.2rem clamp(1.1rem,2.5vw,1.8rem);
+  background:linear-gradient(170deg,rgba(38,19,10,.9),rgba(22,11,4,.92));
+}
+.gig--next{border-color:rgba(216,169,84,.7)}
+.gig__date{display:flex;flex-direction:column;gap:.3rem;border-right:1px solid var(--line);padding-right:1rem}
+.gig__tag{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.gig h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.15;color:#F3E3C2;margin-top:.25rem}
+.gig__line{margin-top:.35rem;font-size:1rem;color:var(--ink-soft)}
+.gig__note{margin-top:.3rem;font-size:.98rem;font-style:italic;color:var(--ink-soft)}
+
 .format{
   list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2vw,1.6rem);
   margin-top:clamp(2rem,5vh,3rem);
@@ -126,6 +140,8 @@ h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3.6vw,
   .nav__link{display:none}
   .dates{grid-template-columns:1fr 1fr}
   .format,.tiers{grid-template-columns:1fr}
+  .gig{grid-template-columns:1fr}
+  .gig__date{flex-direction:row;align-items:baseline;gap:.6rem;border-right:0;border-bottom:1px solid var(--line);padding:0 0 .7rem}
   .footer__row{flex-direction:column;align-items:flex-start;gap:.7rem}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -140,7 +156,8 @@ h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3.6vw,
   </a>
   <nav class="nav__links" aria-label="Navigazione">
     <a class="nav__link" href="index.html">Il locale</a>
-    <a class="nav__link" href="index.html#eventi">Spazio ed eventi privati</a>
+    <a class="nav__link" href="#jazz">Venerdì jazz</a>
+    <a class="nav__link" href="#mercoledi">Mercoledì Universitario</a>
     <a class="nav__book" href="index.html#prenota">Prenota</a>
   </nav>
 </header>
@@ -148,14 +165,42 @@ h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3.6vw,
 <main class="wrap">
 
   <section class="head">
-    <p class="eyebrow">I nostri eventi · Studenti</p>
-    <h1>Mercoledì Universitario. Ogni mercoledì.</h1>
-    <p>Il mercoledì degli universitari a CityLife. Nove serate dal 14 ottobre al 16 dicembre:
-       musica, aperitivo lungo e la partita sul ledwall quando c’è la coppa.
-       Si entra col badge dell’università.</p>
+    <p class="eyebrow">I nostri eventi</p>
+    <h1>Jazz il venerdì, universitari il mercoledì.</h1>
+    <p>Ogni venerdì un trio jazz dal vivo, ogni mercoledì la serata degli universitari.
+       Tutto in Via Masaccio 18, a CityLife.</p>
   </section>
 
-  <section class="block" aria-labelledby="date-t">
+  <section class="block" id="jazz" aria-labelledby="jazz-t">
+    <div class="block__head">
+      <p class="eyebrow">Ogni venerdì · Jazz dal vivo</p>
+      <h2 id="jazz-t">Venerdì jazz</h2>
+      <p class="block__note">Due set, alle 19 e alle 22. Ingresso libero con consumazione.
+         Le serate di ottobre e del 6 novembre sono nel programma di JazzMI, quella del 20 novembre nella Milano Music Week.</p>
+    </div>
+    <ol class="gigs" data-jazz-list>
+      <li class="gig gig--next"><div class="gig__date"><span class="date__day">Venerdì</span><span class="date__n">30</span><span class="date__m">ottobre</span></div><div class="gig__body"><span class="gig__tag">JazzMI</span><h3>Lupi Trio</h3><p class="gig__line">Sata Lupi, voce · Carmelo Tartamella, chitarra · Carlo Bavetta, contrabbasso</p></div></li>
+      <li class="gig"><div class="gig__date"><span class="date__day">Venerdì</span><span class="date__n">6</span><span class="date__m">novembre</span></div><div class="gig__body"><span class="gig__tag">JazzMI</span><h3>Mirko Fait Trio</h3><p class="gig__line">Mirko Fait, sax · Joe Zangaro, piano · Chiara Bianchi, contrabbasso</p></div></li>
+      <li class="gig"><div class="gig__date"><span class="date__day">Venerdì</span><span class="date__n">13</span><span class="date__m">novembre</span></div><div class="gig__body"><h3>Emma Ghezzi and The Rabbits</h3><p class="gig__line">Emma Ghezzi, voce · Carmelo Tartamella, chitarra · Mirko Fait, sax</p></div></li>
+      <li class="gig"><div class="gig__date"><span class="date__day">Venerdì</span><span class="date__n">20</span><span class="date__m">novembre</span></div><div class="gig__body"><span class="gig__tag">Milano Music Week</span><h3>Vigna Trio</h3><p class="gig__line">Sonia Lo Giudice, voce · Ignazio Vignali, voce e chitarra · Mirko Fait, sax</p></div></li>
+      <li class="gig"><div class="gig__date"><span class="date__day">Venerdì</span><span class="date__n">27</span><span class="date__m">novembre</span></div><div class="gig__body"><h3>Odilla Rey Trio</h3><p class="gig__line">Odilla Rey, voce · Carmelo Tartamella, chitarra · Mirko Fait, sax</p></div></li>
+    </ol>
+    <div class="cta__row" style="margin-top:clamp(2rem,4vh,2.6rem)">
+      <a class="btn btn--gold" href="https://wa.me/393751451648?text=Ciao%20CTLF!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20venerd%C3%AC%20jazz." target="_blank" rel="noopener">Prenota un tavolo</a>
+    </div>
+  </section>
+
+  <section class="block" id="mercoledi" aria-labelledby="merc-t">
+    <div class="block__head">
+      <p class="eyebrow">I nostri eventi · Studenti</p>
+      <h2 id="merc-t">Mercoledì Universitario. Ogni mercoledì.</h2>
+      <p class="block__note">Il mercoledì degli universitari a CityLife. Nove serate dal 14 ottobre al 16 dicembre:
+       musica, aperitivo lungo e la partita sul ledwall quando c’è la coppa.
+       Si entra col badge dell’università.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="date-t" style="border-top:0;padding-top:0">
     <div class="block__head">
       <p class="eyebrow">Il calendario</p>
       <h2 id="date-t">Le nove date</h2>
@@ -232,5 +277,6 @@ h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3.6vw,
   </div>
 </footer>
 
+<script src="assets/jazz.js" defer></script>
 </body>
 </html>

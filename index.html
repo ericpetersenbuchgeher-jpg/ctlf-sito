@@ -440,6 +440,21 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
   font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;line-height:2;color:rgba(237,217,180,.66);
 }
 .eventi__cta{text-align:center;margin-top:clamp(2.4rem,5vh,3.4rem)}
+/* ---- VENERDÌ JAZZ ---- fascia nell'hero: la prossima data si aggiorna da sola (script in fondo) */
+.jazzband{
+  margin-top:clamp(1.6rem,3.6vh,2.4rem);display:flex;align-items:center;gap:clamp(.9rem,2vw,1.4rem);
+  background:linear-gradient(170deg,rgba(38,19,10,.94),rgba(22,11,4,.96));
+  border:1px solid rgba(216,169,84,.4);border-radius:3px;color:#EDD9B4;text-align:left;
+  padding:.95rem clamp(1rem,2.4vw,1.5rem);max-width:34rem;
+  transition:border-color .45s,transform .45s var(--ease-lux);
+}
+.jazzband:hover{border-color:rgba(216,169,84,.8);transform:translateY(-3px)}
+.jazzband__tag{font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;flex:none}
+.jazzband__txt{display:flex;flex-direction:column;gap:.15rem;padding-left:clamp(.9rem,2vw,1.4rem);border-left:1px solid rgba(216,169,84,.28)}
+.jazzband__when{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(237,217,180,.7)}
+.jazzband__who{font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.45rem);line-height:1.2;color:#F3E3C2}
+.jazzband__go{margin-left:auto;color:var(--gold);font-size:1.1rem;flex:none}
+@media (max-width:520px){.jazzband{padding:.8rem 1rem}.jazzband__tag{display:none}.jazzband__txt{border-left:0;padding-left:0}.jazzband__when{font-size:.62rem;letter-spacing:.14em}}
 /* Instagram: stessa galleria degli eventi, card 4:5 come la griglia del profilo */
 .instagram{padding-top:clamp(5rem,10vh,8rem);padding-bottom:clamp(4rem,8vh,6rem)}
 .igpost{
@@ -700,6 +715,7 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
     <a class="nav__link" href="#locale">Il locale</a>
     <a class="nav__link" href="#eventi">Eventi</a>
     <a class="nav__link" href="#convenzioni">Convenzioni</a>
+    <a class="nav__link" href="eventi.html#jazz">Venerdì jazz</a>
     <a class="nav__link" href="eventi.html">I nostri eventi</a>
     <a class="nav__book" href="#prenota">Prenota</a>
   </nav>
@@ -725,6 +741,14 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
         Dalle prime colazioni alle ultime conversazioni.
         Dall’espresso al Negroni. Dalla luce naturale alle luci soffuse.
       </p>
+      <a class="jazzband" href="eventi.html#jazz" data-jazz-next>
+        <span class="jazzband__tag">Ogni<br>venerdì</span>
+        <span class="jazzband__txt">
+          <span class="jazzband__when" data-jazz-when>Jazz dal vivo · set alle 19 e alle 22</span>
+          <span class="jazzband__who" data-jazz-who>Le date dei venerdì jazz</span>
+        </span>
+        <span class="jazzband__go" aria-hidden="true">→</span>
+      </a>
     </div>
     <div class="scrollhint" aria-hidden="true">la giornata comincia</div>
   </section>
@@ -818,6 +842,13 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
     </div>
     <div class="gallery">
     <div class="eventi__grid" id="eventiGallery" tabindex="0" aria-label="Eventi e spazio, scorri per vederli tutti">
+      <a class="evento evento--link" href="eventi.html#jazz">
+        <span class="monogram" aria-hidden="true"></span>
+        <h3>Venerdì jazz</h3>
+        <p>Ogni venerdì un trio dal vivo, con le serate JazzMI e Milano Music Week.
+           Due set, alle 19 e alle 22. Ingresso libero con consumazione.</p>
+        <p class="evento__feat">Le date dei venerdì <span aria-hidden="true">→</span></p>
+      </a>
       <article class="evento">
         <span class="monogram" aria-hidden="true"></span>
         <h3>Meeting &amp; convention</h3>
@@ -1551,5 +1582,6 @@ if (renderer) {
   });
 }
 </script>
+<script src="assets/jazz.js" defer></script>
 </body>
 </html>
