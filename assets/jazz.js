@@ -2,7 +2,7 @@
    Per aggiungere una serata basta una riga qui; le date passate spariscono da sole. */
 const JAZZ = [
   { d: '2026-10-23', who: 'Blanco / Fait / Lo Palo Trio', tag: 'JazzMI', line: 'Mirko Fait, sax · Beppe Blanco, piano · Andrea Lo Palo, batteria' },
-  { d: '2026-10-30', who: 'Lupi Trio', tag: 'JazzMI', line: 'Sata Lupi, voce · Carmelo Tartamella, chitarra · Carlo Bavetta, contrabbasso' },
+  { d: '2026-10-30', who: 'Lupi Trio', tag: 'JazzMI', line: 'Sara Lupi, voce · Carmelo Tartamella, chitarra · Carlo Bavetta, contrabbasso' },
   { d: '2026-11-06', who: 'Mirko Fait Trio', tag: 'JazzMI', line: 'Mirko Fait, sax · Joe Zangaro, piano · Chiara Bianchi, contrabbasso', note: 'Il cool jazz e la bossanova degli anni ’50 e ’60.' },
   { d: '2026-11-13', who: 'Emma Ghezzi and The Rabbits', line: 'Emma Ghezzi, voce · Carmelo Tartamella, chitarra · Mirko Fait, sax', note: 'Una serata tra blues e swing.' },
   { d: '2026-11-20', who: 'Vigna Trio', tag: 'Milano Music Week', line: 'Sonia Lo Giudice, voce · Ignazio Vignali, voce e chitarra · Mirko Fait, sax', note: 'Da Napoli al Sudamerica fino agli States, tra swing e bossanova.' },
