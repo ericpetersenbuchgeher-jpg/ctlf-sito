@@ -121,7 +121,7 @@ def card(p):
     badge = {"video": "Reel", "carousel_album": "Carosello"}.get(p.get("type"), "")
     return (
         f'      <a class="igpost" href="{html.escape(p["permalink"], quote=True)}" target="_blank" rel="noopener">\n'
-        f'        <img src="{p["image"]}" alt="{alt}" width="640" height="800" loading="lazy" decoding="async">\n'
+        f'        <img src="{p["image"]}" alt="{alt}" width="640" height="800" decoding="async">\n'
         + (f'        <span class="igpost__badge">{badge}</span>\n' if badge else "")
         + f'        <span class="igpost__meta"><time datetime="{when.date().isoformat()}">{label}</time>'
         + (f'<span class="igpost__cap">{html.escape(first)}</span>' if first else "")

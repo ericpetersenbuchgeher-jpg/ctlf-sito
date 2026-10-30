@@ -464,6 +464,10 @@ body[data-stage="4"] .vision__quote{color:var(--gold)}
   transition:transform .5s var(--ease-lux),border-color .5s,box-shadow .5s;
 }
 .igpost img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform 1.1s var(--ease-lux)}
+/* se la foto non arriva: niente alt grezzo né icona rotta, resta il logo su fondo scuro */
+.igpost img{background:rgba(22,11,4,.6) url(assets/logo-gold-small-clean.png) center/38% no-repeat;color:transparent;font-size:0}
+.igpost--noimg img{display:none}
+.igpost--noimg::before{content:"";display:block;aspect-ratio:4/5;background:url(assets/logo-gold-small-clean.png) center/38% no-repeat;opacity:.85}
 .igpost:hover{transform:translateY(-8px);border-color:rgba(216,169,84,.6);box-shadow:0 30px 70px -25px rgba(10,5,1,.7)}
 .igpost:hover img{transform:scale(1.03)}
 .igpost:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
@@ -1013,25 +1017,25 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
     <div class="eventi__grid ig__grid" id="igGallery" tabindex="0" aria-label="Post Instagram di CTLF, scorri per vederli tutti">
       <!-- IG:START -->
       <a class="igpost" href="https://www.instagram.com/p/DeQ89_CNtOH/" target="_blank" rel="noopener">
-        <img src="assets/instagram/DeQ89_CNtOH.jpg" alt="Post Instagram di CTLF del 9 ott 2026: C’è un’arte nel far sentire qualcuno a casa" width="640" height="800" loading="lazy" decoding="async">
+        <img src="assets/instagram/DeQ89_CNtOH.jpg" alt="Post Instagram di CTLF del 9 ott 2026: C’è un’arte nel far sentire qualcuno a casa" width="640" height="800" decoding="async">
         <span class="igpost__meta"><time datetime="2026-10-09">9 ott 2026</time><span class="igpost__cap">C’è un’arte nel far sentire qualcuno a casa</span></span>
       </a>
       <a class="igpost" href="https://www.instagram.com/p/DeJu9UnjbUf/" target="_blank" rel="noopener">
-        <img src="assets/instagram/DeJu9UnjbUf.jpg" alt="Post Instagram di CTLF del 6 ott 2026: Studenti, mercoledì 14 si torna in aula. Stavolta l&#x27;aula è in Via Masaccio 18 e il primo drink lo offriamo…" width="640" height="800" loading="lazy" decoding="async">
+        <img src="assets/instagram/DeJu9UnjbUf.jpg" alt="Post Instagram di CTLF del 6 ott 2026: Studenti, mercoledì 14 si torna in aula. Stavolta l&#x27;aula è in Via Masaccio 18 e il primo drink lo offriamo…" width="640" height="800" decoding="async">
         <span class="igpost__badge">Carosello</span>
         <span class="igpost__meta"><time datetime="2026-10-06">6 ott 2026</time><span class="igpost__cap">Studenti, mercoledì 14 si torna in aula. Stavolta l&#x27;aula è in Via Masaccio 18 e il primo drink lo offriamo…</span></span>
       </a>
       <a class="igpost" href="https://www.instagram.com/p/Dd6ENK2DZyh/" target="_blank" rel="noopener">
-        <img src="assets/instagram/Dd6ENK2DZyh.jpg" alt="Post Instagram di CTLF del 30 set 2026: Di giorno un caffè, di sera un Negroni. Two Moods. One Place." width="640" height="800" loading="lazy" decoding="async">
+        <img src="assets/instagram/Dd6ENK2DZyh.jpg" alt="Post Instagram di CTLF del 30 set 2026: Di giorno un caffè, di sera un Negroni. Two Moods. One Place." width="640" height="800" decoding="async">
         <span class="igpost__badge">Carosello</span>
         <span class="igpost__meta"><time datetime="2026-09-30">30 set 2026</time><span class="igpost__cap">Di giorno un caffè, di sera un Negroni. Two Moods. One Place.</span></span>
       </a>
       <a class="igpost" href="https://www.instagram.com/p/Dd1d0wfNDJk/" target="_blank" rel="noopener">
-        <img src="assets/instagram/Dd1d0wfNDJk.jpg" alt="Post Instagram di CTLF del 28 set 2026: Si scrive CTLF, si legge sìti elef." width="640" height="800" loading="lazy" decoding="async">
+        <img src="assets/instagram/Dd1d0wfNDJk.jpg" alt="Post Instagram di CTLF del 28 set 2026: Si scrive CTLF, si legge sìti elef." width="640" height="800" decoding="async">
         <span class="igpost__meta"><time datetime="2026-09-28">28 set 2026</time><span class="igpost__cap">Si scrive CTLF, si legge sìti elef.</span></span>
       </a>
       <a class="igpost" href="https://www.instagram.com/p/DdzSreDgvv-/" target="_blank" rel="noopener">
-        <img src="assets/instagram/DdzSreDgvv-.jpg" alt="Post Instagram di CTLF del 27 set 2026: C T L F. Quattro lettere che da oggi trovate in Via Masaccio 18." width="640" height="800" loading="lazy" decoding="async">
+        <img src="assets/instagram/DdzSreDgvv-.jpg" alt="Post Instagram di CTLF del 27 set 2026: C T L F. Quattro lettere che da oggi trovate in Via Masaccio 18." width="640" height="800" decoding="async">
         <span class="igpost__meta"><time datetime="2026-09-27">27 set 2026</time><span class="igpost__cap">C T L F. Quattro lettere che da oggi trovate in Via Masaccio 18.</span></span>
       </a>
       <!-- IG:END -->
@@ -1091,6 +1095,16 @@ body[data-stage="4"] .finale__cta{color:var(--gold-hi);border-color:rgba(216,169
 </script>
 
 <script>
+/* foto Instagram: un secondo tentativo, poi segnaposto col logo */
+document.querySelectorAll('.igpost img').forEach(img=>{
+  const ko=()=>{
+    if(!img.dataset.retry){img.dataset.retry=1;img.src=img.getAttribute('src').split('?')[0]+'?r='+Date.now();return}
+    img.closest('.igpost').classList.add('igpost--noimg');
+  };
+  img.addEventListener('error',ko);
+  if(img.complete&&img.naturalWidth===0&&img.getAttribute('src'))ko();
+});
+
 /* ================================================================
    CTLF — Two Moods. One Place.
    Lo scroll è la giornata: alba → espresso → golden hour → Negroni.
