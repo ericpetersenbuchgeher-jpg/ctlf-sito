@@ -5,8 +5,8 @@ const JAZZ = [
   { d: '2026-10-30', who: 'Lupi Trio', tag: 'JazzMI', line: 'Sara Lupi, voce · Carmelo Tartamella, chitarra · Carlo Bavetta, contrabbasso' },
   { d: '2026-11-06', who: 'Mirko Fait Trio', tag: 'JazzMI', line: 'Mirko Fait, sax · Joe Zangaro, piano · Chiara Bianchi, contrabbasso', note: 'Il cool jazz e la bossanova degli anni ’50 e ’60.' },
   { d: '2026-11-13', who: 'Emma Ghezzi and The Rabbits', line: 'Emma Ghezzi, voce · Carmelo Tartamella, chitarra · Mirko Fait, sax', note: 'Una serata tra blues e swing.' },
-  { d: '2026-11-20', who: 'Vigna Trio', tag: 'Milano Music Week', line: 'Sonia Lo Giudice, voce · Ignazio Vignali, voce e chitarra · Mirko Fait, sax', note: 'Da Napoli al Sudamerica fino agli States, tra swing e bossanova.' },
-  { d: '2026-11-27', who: 'Odilla Rey Trio', line: 'Odilla Rey, voce · Carmelo Tartamella, chitarra · Mirko Fait, sax', note: 'Dal soul al blues, dal pop al jazz.' }
+  { d: '2026-11-20', who: 'Italiano Bossa', tag: 'Milano Music Week', line: 'Sonia Lo Giudice, voce · Ignazio Vignali, voce e chitarra · Raffaele Brancati, sax', note: 'Da Napoli al Sudamerica fino agli States, tra swing e bossanova.' },
+  { d: '2026-11-27', who: 'Odilla Rey Trio', line: 'Odilla Rey, voce · Carmelo Tartamella, chitarra', note: 'Dal soul al blues, dal pop al jazz.' }
 ];
 (function () {
   const MESI = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
